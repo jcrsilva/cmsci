@@ -1,0 +1,9 @@
+Started by user [8mha:////4JIgdAnqmHeBikDAWOMW9qfLNHMknymZ5DMBAFzg3jqVAAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzWEgZu/dLi1CL9xJTczDwAj6GcLcAAAAA=[0madmin
+Building in workspace /var/jenkins_home/workspace/ghost
+[ghost] $ /bin/sh -xe /tmp/hudson625606797620326129.sh
++ rsync -avz --no-owner --no-group --delete --exclude .git --omit-dir-times /var/gh_code_new/ /var/gh_code/
+sending incremental file list
+
+sent 4,466 bytes  received 50 bytes  9,032.00 bytes/sec
+total size is 3,670,395  speedup is 812.75
+Finished: SUCCESS

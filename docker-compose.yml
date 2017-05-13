@@ -1,0 +1,50 @@
+version: '2'
+
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: somewordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+  wordpress:
+    depends_on:
+      - db
+    ports:
+      - "8000:80"
+    volumes:
+      - ./cms/wp_code:/var/www/html/wp-content
+    image: wordpress:4.7.4-apache
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+
+  ghost:
+    ports:
+      - "8001:2368"
+    image: ghost:0.11.8-alpine
+    restart: always
+    volumes:
+      - ./cms/gh_code:/var/lib/ghost
+
+  jenkins:
+    ports:
+      - "8003:8080"
+      - "50000:50000"
+    image: jenkins:2.46.2-alpine
+    restart: always
+    volumes:
+      - ./ci/jenkins_home:/var/jenkins_home
+      - ./cms/gh_code:/var/gh_code
+      - ./cms/wp_code:/var/wp_code
+      - ./ci/gh_code:/var/gh_code_new
+      - ./ci/wp_code:/var/wp_code_new
+
+volumes:
+    db_data:
